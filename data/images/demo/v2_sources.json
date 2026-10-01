@@ -1,0 +1,7 @@
+{
+  "selection": "Selected by visual inspection of evenly spaced held-out images before inspecting model predictions; not a separate performance benchmark. Local evaluation only; photos excluded from package.",
+  "files": {
+    "roadside-litter-test.jpg": "taco_00616.jpg",
+    "pavement-litter-test.jpg": "taco_01111.jpg"
+  }
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "file": "pothole-test.jpg",
+    "source_path": "data/images/raw/data/Road Issues/Pothole Issues/109_jpg.rf.2f3319a424f5c2bd358c7cc7a7af8e10.jpg",
+    "label": "Pothole",
+    "split": "test",
+    "selection": "First manifest test image in this class, chosen before final test evaluation"
+  },
+  {
+    "file": "waste-material-test.jpg",
+    "source_path": "data/images/raw/dataset-resized/cardboard/cardboard101.jpg",
+    "label": "Waste material",
+    "split": "test",
+    "selection": "First manifest test image in this class, chosen before final test evaluation"
+  },
+  {
+    "file": "street-review-test.jpg",
+    "source_path": "data/images/raw/data/Public Cleanliness + Environmental Issues/Littering Garbage on Public Places Issues/25-7369329--80-2540862_A1_jpg.rf.717e3312b953c269cefbc051e863544f.jpg",
+    "label": "Street scene / review",
+    "split": "test",
+    "selection": "First manifest test image in this class, chosen before final test evaluation"
+  }
+]
