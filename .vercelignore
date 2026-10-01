@@ -18,3 +18,7 @@ tests/
 Dockerfile
 render.yaml
 requirements*.txt
+
+# Local screenshots, browser checks and personal document exports
+output/
+tmp/
