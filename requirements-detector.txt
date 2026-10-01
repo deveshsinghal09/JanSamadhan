@@ -1,0 +1,2 @@
+# Optional pothole detector training dependencies
+ultralytics==8.4.149

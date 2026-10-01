@@ -1,0 +1,34 @@
+{
+  "name": "jansamadhan-review",
+  "version": "0.8.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n AI,API,WEB \".venv\\Scripts\\python.exe -m uvicorn ml.service:app --host 127.0.0.1 --port 8001\" \"node backend/server.js\" \"vite --host 127.0.0.1\"",
+    "build": "vite build",
+    "start": "concurrently -k -n AI,API \".venv\\Scripts\\python.exe -m uvicorn ml.service:app --host 127.0.0.1 --port 8001\" \"node backend/server.js\"",
+    "start:production": "python scripts/start_production.py",
+    "train": ".venv\\Scripts\\python.exe -m ml.train",
+    "test": "node --test tests/*.test.js",
+    "train:images": ".venv\\Scripts\\python.exe scripts\\train_civic_v3.py"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.1.0",
+    "leaflet": "^1.9.4",
+    "lucide-react": "^0.468.0",
+    "mongoose": "^8.19.0",
+    "multer": "^2.0.2",
+    "pg": "^8.23.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
+    "@vitejs/plugin-react": "^4.4.0",
+    "concurrently": "^9.1.2",
+    "tailwindcss": "^4.1.0",
+    "vite": "^6.3.0"
+  }
+}
