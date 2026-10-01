@@ -1,0 +1,15 @@
+{
+  "version": "image-v4-road",
+  "road_model": "ml/image_road_model.pt",
+  "class_thresholds": {
+    "Garbage / litter": 0.7,
+    "Other / review": 1.01,
+    "Pothole": 0.75,
+    "Road scene / review": 1.01,
+    "Road surface issue": 1.01,
+    "Streetlight infrastructure": 1.01,
+    "Traffic sign / review": 1.01,
+    "Waterlogging / flooded road": 1.01
+  },
+  "metrics": "data/image_pipeline_metrics.json"
+}
