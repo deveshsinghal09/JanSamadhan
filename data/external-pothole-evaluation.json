@@ -1,0 +1,71 @@
+{
+  "purpose": "User-provided external regression image, excluded from training. Lucknow coordinates are preview inputs only, not a claim about the photograph location. No complaint submitted.",
+  "expectedVisualIssue": "Pothole / broken asphalt",
+  "prediction": {
+    "category": "Road Damage",
+    "categoryConfidence": 0.9995,
+    "scores": {
+      "Garbage": 0,
+      "Other": 0.0005,
+      "Road Damage": 0.9995,
+      "Sewerage": 0,
+      "Streetlight": 0,
+      "Water Supply": 0
+    },
+    "urgency": "Medium",
+    "urgencyConfidence": 0.5076,
+    "modelCategory": "Road Damage",
+    "modelUrgency": "Medium",
+    "manualReview": true,
+    "reason": "Predicted from complaint text. Your description suggests Road Damage; the photo model suggests Waterlogging / flooded road. Keep the described category and ask an officer to verify both.",
+    "safetyOverride": false,
+    "matchedTerms": [
+      "and",
+      "and broken",
+      "asphalt",
+      "broken",
+      "damaged",
+      "damaged road",
+      "deep",
+      "in",
+      "in the",
+      "is",
+      "municipal",
+      "municipal road"
+    ],
+    "method": "CivicComp-trained multilingual TF-IDF + Logistic Regression; jurisdiction and safety guards; model v2",
+    "decisionMethod": "text-image-consensus-v1",
+    "evidence": {
+      "textCategory": "Road Damage",
+      "textScore": 0.9995,
+      "photoLabel": "Waterlogging / flooded road",
+      "photoScore": 0.8442,
+      "status": "conflict",
+      "explanation": "Your description suggests Road Damage; the photo model suggests Waterlogging / flooded road. Keep the described category and ask an officer to verify both."
+    }
+  },
+  "imagePrediction": {
+    "label": "Waterlogging / flooded road",
+    "confidence": 0.8442,
+    "scores": {
+      "Garbage / litter": 0.1412,
+      "Other / review": 0.0081,
+      "Pothole": 0.0024,
+      "Road scene / review": 0.0013,
+      "Road surface issue": 0.0028,
+      "Streetlight infrastructure": 0.0001,
+      "Traffic sign / review": 0.0001,
+      "Waterlogging / flooded road": 0.8442
+    },
+    "suggestedCategory": null,
+    "manualReview": true,
+    "reviewReasons": [
+      "This visual class needs an officer to identify the actual complaint.",
+      "The prediction does not meet the model’s validation-based acceptance threshold."
+    ],
+    "displayLabel": "Photo needs review",
+    "modelVersion": "image-v4-road",
+    "method": "ImageNet-pretrained MobileNetV3-Small with MobileNetV3-Large road refinement with supervised civic-image transfer learning; checkpoint selected by validation macro F1",
+    "note": "Describe the issue you can see; an officer can review a photo that does not match. Unsupported scenes may still receive a confident label. A model score is not the probability that the complaint is correct."
+  }
+}

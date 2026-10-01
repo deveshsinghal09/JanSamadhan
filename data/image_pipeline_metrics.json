@@ -1,0 +1,734 @@
+{
+  "architecture": "MobileNetV3-Small + MobileNetV3-Large road refinement",
+  "pretraining": "torchvision ImageNet1K V1",
+  "training": "2 classifier warm-up epochs then full CNN fine-tuning; AdamW; weighted cross-entropy; train-only crop, horizontal flip, color jitter; best validation macro F1 checkpoint; 768px long-edge lossless PNG cache (one per original, not extra examples)",
+  "seed": 42,
+  "device": "cuda",
+  "epochs_run": 8,
+  "best_epoch": 5,
+  "history": [
+    {
+      "epoch": 1,
+      "stage": "classifier warm-up",
+      "train_loss": 0.6580037209570133,
+      "validation_macro_f1": 0.7996191366693296,
+      "validation_accuracy": 0.740174672489083
+    },
+    {
+      "epoch": 2,
+      "stage": "classifier warm-up",
+      "train_loss": 0.4254223476700519,
+      "validation_macro_f1": 0.7718416987118218,
+      "validation_accuracy": 0.6681222707423581
+    },
+    {
+      "epoch": 3,
+      "stage": "full CNN fine-tuning",
+      "train_loss": 0.3597894883650239,
+      "validation_macro_f1": 0.8130548721279245,
+      "validation_accuracy": 0.715429403202329
+    },
+    {
+      "epoch": 4,
+      "stage": "full CNN fine-tuning",
+      "train_loss": 0.316896301363745,
+      "validation_macro_f1": 0.8171318818632768,
+      "validation_accuracy": 0.7678311499272198
+    },
+    {
+      "epoch": 5,
+      "stage": "full CNN fine-tuning",
+      "train_loss": 0.29412357969218134,
+      "validation_macro_f1": 0.8441825130396393,
+      "validation_accuracy": 0.7765647743813683
+    },
+    {
+      "epoch": 6,
+      "stage": "full CNN fine-tuning",
+      "train_loss": 0.26532320176950797,
+      "validation_macro_f1": 0.8110220129316364,
+      "validation_accuracy": 0.6994177583697234
+    },
+    {
+      "epoch": 7,
+      "stage": "full CNN fine-tuning",
+      "train_loss": 0.2488128027196304,
+      "validation_macro_f1": 0.8178034395989795,
+      "validation_accuracy": 0.7016011644832606
+    },
+    {
+      "epoch": 8,
+      "stage": "full CNN fine-tuning",
+      "train_loss": 0.2384282942809817,
+      "validation_macro_f1": 0.8275486215690865,
+      "validation_accuracy": 0.74235807860262
+    }
+  ],
+  "audit": {
+    "downloaded_image_files": 10066,
+    "retained_images": 9969,
+    "groups": 1523,
+    "rejected": {
+      "exact_duplicate": 26,
+      "too_small": 71
+    },
+    "class_counts": {
+      "train": {
+        "Pothole": 1066,
+        "Road scene / review": 3104,
+        "Road surface issue": 1186,
+        "Waterlogging / flooded road": 323,
+        "Garbage / litter": 419,
+        "Other / review": 154,
+        "Streetlight infrastructure": 538,
+        "Traffic sign / review": 154
+      },
+      "validation": {
+        "Road scene / review": 600,
+        "Road surface issue": 196,
+        "Pothole": 209,
+        "Waterlogging / flooded road": 55,
+        "Streetlight infrastructure": 165,
+        "Garbage / litter": 80,
+        "Other / review": 37,
+        "Traffic sign / review": 32
+      },
+      "test": {
+        "Streetlight infrastructure": 116,
+        "Waterlogging / flooded road": 62,
+        "Garbage / litter": 62,
+        "Pothole": 255,
+        "Road scene / review": 779,
+        "Road surface issue": 311,
+        "Other / review": 30,
+        "Traffic sign / review": 36
+      }
+    },
+    "source_counts": {
+      "RDD2022-India": 7706,
+      "RoadwayFlood": 440,
+      "PilesOfGarbage": 273,
+      "GINI": 423,
+      "Streetlight": 819,
+      "SignScenes": 222,
+      "TACO": 86
+    },
+    "split_seed": 115,
+    "sources": [
+      {
+        "name": "SpotGarbage GINI, explicitly annotated photographs",
+        "url": "https://github.com/spotgarbage/spotgarbage-GINI",
+        "scope": "Annotated garbage piles/litter; non-garbage photographs used only as review examples. Local academic use; original image rights remain with creators."
+      },
+      {
+        "name": "RDD2022 India",
+        "url": "https://doi.org/10.6084/m9.figshare.21431547.v1",
+        "scope": "Indian road photographs with PASCAL VOC damage boxes. CC BY-SA 4.0; use labeled training partition only."
+      },
+      {
+        "name": "Roadway Flooding",
+        "url": "https://doi.org/10.17632/t395bwcvbw.1",
+        "scope": "441 roadway photographs, segmentation masks excluded. CC BY 4.0."
+      },
+      {
+        "name": "Urban Streetlight Analysis",
+        "url": "https://github.com/Team16Project/Street-Light-Dataset",
+        "scope": "Original streetlight photographs. Combined infrastructure class: daytime/off lamps are NOT evidence of electrical failure. Local academic use; no redistribution."
+      },
+      {
+        "name": "TACO",
+        "url": "https://github.com/pedropro/TACO",
+        "scope": "Only photos with at least five annotated litter objects and sufficient annotated area; not isolated-object photographs. Local use; per-photo rights retained."
+      },
+      {
+        "name": "Piles of Garbage",
+        "url": "https://www.kaggle.com/datasets/hammadarshad18/garbage-detection",
+        "scope": "YOLO-annotated garbage piles, Pakistan and web photographs. CC0 listing; overlaps with GINI are deduplicated."
+      },
+      {
+        "name": "Portuguese traffic-sign photographs",
+        "url": "https://www.kaggle.com/datasets/danielvareta/damaged-signs-dataset",
+        "scope": "500-photo sample. Source labels specify sign type, not condition: used only as Traffic sign / review, never as confirmed damage. CC0 listing."
+      }
+    ],
+    "split_policy": "Exact pixels, 256-bit perceptual dHash radius 4, source families, TACO acquisition batches, streetlight dates and consecutive RDD ID blocks of 50 stay in a single split. Approximate 70/15/15 group split, selected for label balance only before training. RDD ID blocks are a conservative sequence heuristic, not verified location separation.",
+    "label_policy": "No old Road Issues folder-labeled images; no TrashNet isolated objects. GINI positives are explicitly annotated and visually screened for piles/scattered litter; TACO requires >=5 annotated objects and >=4% annotated area. Flood masks are excluded. Indian road labels come from XML damage annotations. Streetlights are an infrastructure scene class, not a diagnosis of failure.",
+    "limitations": "Scene classification, not object detection. Multiple issues may coexist. Streetlight operation, electrical faults, parking legality and sewer blockage cannot be inferred reliably from these labels. No verified Lucknow photo holdout. Source and acquisition biases remain despite group splitting. Dataset sizes count retained original photographs, not augmentation copies. No raw-image redistribution."
+  },
+  "splits": {
+    "train": 6944,
+    "validation": 1374,
+    "test": 1651
+  },
+  "validation": {
+    "report": {
+      "Garbage / litter": {
+        "precision": 0.9733333333333334,
+        "recall": 0.9125,
+        "f1-score": 0.9419354838709677,
+        "support": 80.0
+      },
+      "Other / review": {
+        "precision": 0.8461538461538461,
+        "recall": 0.8918918918918919,
+        "f1-score": 0.868421052631579,
+        "support": 37.0
+      },
+      "Pothole": {
+        "precision": 0.5305343511450382,
+        "recall": 0.6650717703349283,
+        "f1-score": 0.5902335456475584,
+        "support": 209.0
+      },
+      "Road scene / review": {
+        "precision": 0.8846918489065606,
+        "recall": 0.7416666666666667,
+        "f1-score": 0.8068902991840435,
+        "support": 600.0
+      },
+      "Road surface issue": {
+        "precision": 0.5208333333333334,
+        "recall": 0.6377551020408163,
+        "f1-score": 0.573394495412844,
+        "support": 196.0
+      },
+      "Streetlight infrastructure": {
+        "precision": 0.9939759036144579,
+        "recall": 1.0,
+        "f1-score": 0.9969788519637462,
+        "support": 165.0
+      },
+      "Traffic sign / review": {
+        "precision": 0.9696969696969697,
+        "recall": 1.0,
+        "f1-score": 0.9846153846153847,
+        "support": 32.0
+      },
+      "Waterlogging / flooded road": {
+        "precision": 0.9821428571428571,
+        "recall": 1.0,
+        "f1-score": 0.990990990990991,
+        "support": 55.0
+      },
+      "accuracy": 0.7765647743813683,
+      "macro avg": {
+        "precision": 0.8376703054157996,
+        "recall": 0.8561106788667878,
+        "f1-score": 0.8441825130396393,
+        "support": 1374.0
+      },
+      "weighted avg": {
+        "precision": 0.8020441523365993,
+        "recall": 0.7765647743813683,
+        "f1-score": 0.7844821227765242,
+        "support": 1374.0
+      }
+    },
+    "labels": [
+      "Garbage / litter",
+      "Other / review",
+      "Pothole",
+      "Road scene / review",
+      "Road surface issue",
+      "Streetlight infrastructure",
+      "Traffic sign / review",
+      "Waterlogging / flooded road"
+    ],
+    "confusion_matrix": [
+      [
+        73,
+        6,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        2,
+        33,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        139,
+        26,
+        44,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        84,
+        445,
+        71,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        39,
+        32,
+        125,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        165,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        32,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        55
+      ]
+    ]
+  },
+  "test": {
+    "labels": [
+      "Garbage / litter",
+      "Other / review",
+      "Pothole",
+      "Road scene / review",
+      "Road surface issue",
+      "Streetlight infrastructure",
+      "Traffic sign / review",
+      "Waterlogging / flooded road"
+    ],
+    "report": {
+      "Garbage / litter": {
+        "precision": 0.9516129032258065,
+        "recall": 0.9516129032258065,
+        "f1-score": 0.9516129032258065,
+        "support": 62.0
+      },
+      "Other / review": {
+        "precision": 0.8888888888888888,
+        "recall": 0.8,
+        "f1-score": 0.8421052631578947,
+        "support": 30.0
+      },
+      "Pothole": {
+        "precision": 0.7314814814814815,
+        "recall": 0.6196078431372549,
+        "f1-score": 0.6709129511677282,
+        "support": 255.0
+      },
+      "Road scene / review": {
+        "precision": 0.8285024154589372,
+        "recall": 0.8806161745827985,
+        "f1-score": 0.8537647790914747,
+        "support": 779.0
+      },
+      "Road surface issue": {
+        "precision": 0.6754966887417219,
+        "recall": 0.6559485530546624,
+        "f1-score": 0.6655791190864601,
+        "support": 311.0
+      },
+      "Streetlight infrastructure": {
+        "precision": 0.9745762711864406,
+        "recall": 0.9913793103448276,
+        "f1-score": 0.9829059829059829,
+        "support": 116.0
+      },
+      "Traffic sign / review": {
+        "precision": 0.972972972972973,
+        "recall": 1.0,
+        "f1-score": 0.9863013698630136,
+        "support": 36.0
+      },
+      "Waterlogging / flooded road": {
+        "precision": 1.0,
+        "recall": 0.9838709677419355,
+        "f1-score": 0.991869918699187,
+        "support": 62.0
+      },
+      "accuracy": 0.8134463961235615,
+      "macro avg": {
+        "precision": 0.8779414527445312,
+        "recall": 0.8603794690109107,
+        "f1-score": 0.8681315358996935,
+        "support": 1651.0
+      },
+      "weighted avg": {
+        "precision": 0.8102696370504457,
+        "recall": 0.8134463961235615,
+        "f1-score": 0.8106866793956193,
+        "support": 1651.0
+      }
+    },
+    "confusion_matrix": [
+      [
+        59,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        24,
+        0,
+        2,
+        0,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        158,
+        55,
+        42,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        36,
+        686,
+        56,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        22,
+        84,
+        204,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        115,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        36,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        61
+      ]
+    ]
+  },
+  "review_threshold": 0.7,
+  "threshold_policy": "Temperature minimizes validation negative log likelihood. Garbage/litter and pothole thresholds require >=90% observed validation precision on >=20 accepted validation images, minimum score .70 and top-two margin .15. Other classes always require review. These are in-distribution checks, not guarantees on arbitrary uploads.",
+  "test_threshold_coverage": 0.5384615384615384,
+  "test_accuracy_above_threshold": 0.8931383577052868,
+  "source": "https://github.com/spotgarbage/spotgarbage-GINI",
+  "training_seconds": 6086.0,
+  "limitations": "Scene classification, not object detection. Multiple issues may coexist. Streetlight operation, electrical faults, parking legality and sewer blockage cannot be inferred reliably from these labels. No verified Lucknow photo holdout. Source and acquisition biases remain despite group splitting. Dataset sizes count retained original photographs, not augmentation copies. No raw-image redistribution. Road refinement increases pothole F1 but misses some potholes; test acceptance recall for potholes is 41.6%. Sign, electrical and parking defect specialists are not deployed in this pipeline.",
+  "manifest_sha256": "4f6ed1d6b9b5c29c75389af65e20a9e3c2da4af473307334204c1645382d8962",
+  "test_group_report": {
+    "Garbage / litter": {
+      "precision": 0.9664601293103449,
+      "recall": 0.9722222222222221,
+      "f1-score": 0.9693326128073493,
+      "support": 60.00000000000001
+    },
+    "Other / review": {
+      "precision": 0.9350649350649352,
+      "recall": 0.8,
+      "f1-score": 0.8622754491017964,
+      "support": 30.0
+    },
+    "Pothole": {
+      "precision": 0.7285388568903203,
+      "recall": 0.6195576487422091,
+      "f1-score": 0.6696431884607832,
+      "support": 6.400221905953003
+    },
+    "Road scene / review": {
+      "precision": 0.7271501000879813,
+      "recall": 0.8795781465063482,
+      "f1-score": 0.7961338062276266,
+      "support": 19.720665498050455
+    },
+    "Road surface issue": {
+      "precision": 0.6763719897045156,
+      "recall": 0.6564921913265581,
+      "f1-score": 0.6662838359562304,
+      "support": 7.879112595996566
+    },
+    "Streetlight infrastructure": {
+      "precision": 0.9689968035852745,
+      "recall": 0.9992609016999261,
+      "f1-score": 0.9838961809674853,
+      "support": 32.99999999999999
+    },
+    "Traffic sign / review": {
+      "precision": 0.9090909090909091,
+      "recall": 1.0,
+      "f1-score": 0.9523809523809523,
+      "support": 9.999999999999998
+    },
+    "Waterlogging / flooded road": {
+      "precision": 1.0,
+      "recall": 0.9838709677419355,
+      "f1-score": 0.991869918699187,
+      "support": 62.0
+    },
+    "accuracy": 0.9292257284952526,
+    "macro avg": {
+      "precision": 0.8639592154667852,
+      "recall": 0.8638727597798999,
+      "f1-score": 0.8614769930751763,
+      "support": 229.0
+    },
+    "weighted avg": {
+      "precision": 0.9320491909404733,
+      "recall": 0.9292257284952529,
+      "f1-score": 0.9290498582936082,
+      "support": 229.0
+    }
+  },
+  "group_evaluation": "Each test image receives weight 1 / number of images in its source group. Each group contributes total weight one. Labels remain per image because a road sequence can contain several different conditions.",
+  "calibration": {
+    "temperature": 1.0602038140971854,
+    "validation_nll_before": 0.5464698303896713,
+    "validation_nll_after": 0.5458061519310078,
+    "class_thresholds": {
+      "Garbage / litter": 0.7,
+      "Other / review": 1.01,
+      "Pothole": 0.75,
+      "Road scene / review": 1.01,
+      "Road surface issue": 1.01,
+      "Streetlight infrastructure": 1.01,
+      "Traffic sign / review": 1.01,
+      "Waterlogging / flooded road": 1.01
+    },
+    "validation_threshold_evidence": {
+      "Garbage / litter": {
+        "accepted": 73,
+        "precision": 0.9863013698630136
+      },
+      "Other / review": {
+        "accepted": 0,
+        "precision": null
+      },
+      "Pothole": {
+        "accepted": 36,
+        "precision": 0.9166666666666666
+      },
+      "Road scene / review": {
+        "accepted": 0,
+        "precision": null
+      },
+      "Road surface issue": {
+        "accepted": 0,
+        "precision": null
+      },
+      "Streetlight infrastructure": {
+        "accepted": 0,
+        "precision": null
+      },
+      "Traffic sign / review": {
+        "accepted": 0,
+        "precision": null
+      },
+      "Waterlogging / flooded road": {
+        "accepted": 0,
+        "precision": null
+      }
+    },
+    "policy": "Base temperature applies to base scores; the road specialist uses its own validation-fitted temperature. Pothole threshold selected using combined validation predictions, minimum .70 score, .15 margin and 90% precision on at least 20 accepted images. Surface issues and unsupported classes remain manual review."
+  },
+  "selective_test": {
+    "accepted": 175,
+    "coverage": 0.10599636583888553,
+    "precision": 0.9428571428571428
+  },
+  "model_sha256": "14e685c264727323dfa1c3564ba745fbd262b03d0faa39b6175ba5760d8f5294",
+  "torch_version": "2.7.1+cu118",
+  "parameters": 1526056,
+  "modelVersion": "image-v4-road",
+  "label_audit": "No old Road Issues folder-labeled images; no TrashNet isolated objects. GINI positives are explicitly annotated and visually screened for piles/scattered litter; TACO requires >=5 annotated objects and >=4% annotated area. Flood masks are excluded. Indian road labels come from XML damage annotations. Streetlights are an infrastructure scene class, not a diagnosis of failure.",
+  "sources": [
+    {
+      "name": "SpotGarbage GINI, explicitly annotated photographs",
+      "url": "https://github.com/spotgarbage/spotgarbage-GINI",
+      "scope": "Annotated garbage piles/litter; non-garbage photographs used only as review examples. Local academic use; original image rights remain with creators."
+    },
+    {
+      "name": "RDD2022 India",
+      "url": "https://doi.org/10.6084/m9.figshare.21431547.v1",
+      "scope": "Indian road photographs with PASCAL VOC damage boxes. CC BY-SA 4.0; use labeled training partition only."
+    },
+    {
+      "name": "Roadway Flooding",
+      "url": "https://doi.org/10.17632/t395bwcvbw.1",
+      "scope": "441 roadway photographs, segmentation masks excluded. CC BY 4.0."
+    },
+    {
+      "name": "Urban Streetlight Analysis",
+      "url": "https://github.com/Team16Project/Street-Light-Dataset",
+      "scope": "Original streetlight photographs. Combined infrastructure class: daytime/off lamps are NOT evidence of electrical failure. Local academic use; no redistribution."
+    },
+    {
+      "name": "TACO",
+      "url": "https://github.com/pedropro/TACO",
+      "scope": "Only photos with at least five annotated litter objects and sufficient annotated area; not isolated-object photographs. Local use; per-photo rights retained."
+    },
+    {
+      "name": "Piles of Garbage",
+      "url": "https://www.kaggle.com/datasets/hammadarshad18/garbage-detection",
+      "scope": "YOLO-annotated garbage piles, Pakistan and web photographs. CC0 listing; overlaps with GINI are deduplicated."
+    },
+    {
+      "name": "Portuguese traffic-sign photographs",
+      "url": "https://www.kaggle.com/datasets/danielvareta/damaged-signs-dataset",
+      "scope": "500-photo sample. Source labels specify sign type, not condition: used only as Traffic sign / review, never as confirmed damage. CC0 listing."
+    }
+  ],
+  "group_evaluation_method": "inverse_group_size_weights",
+  "pipeline": {
+    "description": "The base civic classifier identifies scene types. A road specialist redistributes only the road scores; non-road scores remain unchanged.",
+    "base_version": "image-v3",
+    "road_version": "image-v4-road-candidate",
+    "road_model_sha256": "4feb5ea78aea6eb51c264442ae5b93f29600427132ab3f573e1e18535ad9d8d9",
+    "road_history": [
+      {
+        "epoch": 1,
+        "stage": "classifier warm-up",
+        "train_loss": 0.8747234807208548,
+        "validation_macro_f1": 0.5878594746953415,
+        "validation_accuracy": 0.7144278606965174
+      },
+      {
+        "epoch": 2,
+        "stage": "classifier warm-up",
+        "train_loss": 0.7691386263147052,
+        "validation_macro_f1": 0.6458071781162499,
+        "validation_accuracy": 0.7114427860696517
+      },
+      {
+        "epoch": 3,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.7220265132564943,
+        "validation_macro_f1": 0.7108857177131301,
+        "validation_accuracy": 0.7532338308457711
+      },
+      {
+        "epoch": 4,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.5735546609635803,
+        "validation_macro_f1": 0.7084292298742559,
+        "validation_accuracy": 0.7542288557213931
+      },
+      {
+        "epoch": 5,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.4759917398932083,
+        "validation_macro_f1": 0.756786246825831,
+        "validation_accuracy": 0.8019900497512438
+      },
+      {
+        "epoch": 6,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.39835652246910597,
+        "validation_macro_f1": 0.7251793307808118,
+        "validation_accuracy": 0.7890547263681592
+      },
+      {
+        "epoch": 7,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.3151877470635927,
+        "validation_macro_f1": 0.7576917354398809,
+        "validation_accuracy": 0.8109452736318408
+      },
+      {
+        "epoch": 8,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.27535541490963356,
+        "validation_macro_f1": 0.7107492389465128,
+        "validation_accuracy": 0.7691542288557214
+      },
+      {
+        "epoch": 9,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.2190283038293439,
+        "validation_macro_f1": 0.7385937568954798,
+        "validation_accuracy": 0.8049751243781095
+      },
+      {
+        "epoch": 10,
+        "stage": "full CNN fine-tuning",
+        "train_loss": 0.1817771047143508,
+        "validation_macro_f1": 0.74528748756253,
+        "validation_accuracy": 0.7960199004975125
+      }
+    ],
+    "road_best_epoch": 7,
+    "road_splits": {
+      "train": 5356,
+      "validation": 1005,
+      "test": 1345
+    },
+    "road_training": "2 classifier warm-up epochs then full CNN fine-tuning; AdamW; weighted cross-entropy; full-frame resize, train-only horizontal flip and color jitter (no random crops); best validation macro F1 checkpoint; 768px long-edge lossless PNG cache (one per original, not extra examples)",
+    "evaluation": "Combined results use the existing 1,651-image v3 test set, not a new external Lucknow test. Road training images are a subset of the base corpus, not additional unique images.",
+    "road_temperature": 1.6763606885984217
+  }
+}
