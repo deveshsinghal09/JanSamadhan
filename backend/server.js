@@ -10,9 +10,10 @@ const directory=JSON.parse(fs.readFileSync(path.join(root,'data/directory.json')
 await init(directory);
 const app=express();const sessions=new Map(),attempts=new Map();
 const aiServiceUrl=(process.env.AI_SERVICE_URL||'http://127.0.0.1:8001').replace(/\/$/,'');
+const publicOrigins=new Set((process.env.PUBLIC_ORIGINS||'').split(',').map(x=>x.trim()).filter(Boolean));
 if(process.env.NODE_ENV==='production')app.set('trust proxy',1);
 app.disable('x-powered-by');app.use(express.json({limit:'32kb'}));app.use(cookieParser());
-app.use((req,res,next)=>{res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');if(['POST','PATCH','DELETE'].includes(req.method)&&req.headers.origin&&req.headers.origin!==`${req.protocol}://${req.headers.host}`)return res.status(403).json({error:'Cross-origin writes are blocked'});next();});
+app.use((req,res,next)=>{res.setHeader('X-Content-Type-Options','nosniff');res.setHeader('Referrer-Policy','same-origin');const origin=req.headers.origin,ownOrigin=`${req.protocol}://${req.headers.host}`;if(['POST','PATCH','DELETE'].includes(req.method)&&origin&&origin!==ownOrigin&&!publicOrigins.has(origin))return res.status(403).json({error:'Cross-origin writes are blocked'});next();});
 const publicUser=u=>({id:u.id,name:u.name,email:u.email,role:u.role,department:u.department});
 const fail=(res,code,error)=>res.status(code).json({error});
 const reject=(status,message)=>{throw Object.assign(new Error(message),{status});};

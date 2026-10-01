@@ -17,3 +17,5 @@ services:
         value: 0.0.0.0
       - key: AI_SERVICE_URL
         value: http://127.0.0.1:8001
+      - key: PUBLIC_ORIGINS
+        sync: false

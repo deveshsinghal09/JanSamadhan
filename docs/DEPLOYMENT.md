@@ -17,6 +17,9 @@ prototype.
 environment settings. Do not put the real connection string in `render.yaml`,
 `vercel.json`, a Git commit, a screenshot, or an issue.
 
+Set `PUBLIC_ORIGINS` to the comma-separated Vercel production origins that may
+send authenticated write requests through the proxy.
+
 ## Render
 
 The root `render.yaml` defines a Singapore-region Docker web service on the
