@@ -1,0 +1,10 @@
+{
+  "kaggle_ref": "programmerrdai/road-issues-detection-dataset",
+  "kaggle_version": 2,
+  "kaggle_last_updated": "2025-08-10T08:05:37.313Z",
+  "downloads": {
+    "road-issues.zip": "0799d89e09eb0d7ad2a7c1d252e3e7998d61175bbafb156e7c1baa0f3fd51948",
+    "trashnet.zip": "0bf472790f8b20e5c950d5b5012a9d38af0d3392efd65f8ce171334fc16b07c2"
+  },
+  "pretrained_sha256": "047dcff4addef86ea5bc2eff13c9614dc11f47ab1160d0a71a25e7db994f4e1f"
+}

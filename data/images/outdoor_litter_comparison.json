@@ -1,0 +1,20 @@
+{
+  "images": 182,
+  "batches": 2,
+  "note": "Same held-out TACO acquisition batches for both models; these images were absent from v1 training and v2 training/validation. Recall measures litter recognition only, not false positives on non-litter images. Old and new overall test sets differ, so overall accuracy is not a paired comparison.",
+  "v1_recall": 0.15934065934065933,
+  "v1_predictions": {
+    "Graffiti": 25,
+    "Street scene / review": 95,
+    "Pothole": 9,
+    "Parking scene": 23,
+    "Waste material": 29,
+    "Damaged road sign": 1
+  },
+  "v2_recall": 0.9835164835164835,
+  "v2_predictions": {
+    "Garbage / litter": 179,
+    "Graffiti": 2,
+    "Street scene / review": 1
+  }
+}
