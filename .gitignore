@@ -1,0 +1,53 @@
+# Dependencies and build output
+node_modules/
+.venv/
+dist/
+*.egg-info/
+
+# Local configuration and platform state
+.env
+.env.*
+!.env.example
+.vercel/
+.render/
+.DS_Store
+Thumbs.db
+
+# Runtime state and generated logs
+data/runtime/
+*.log
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+
+# Downloaded image corpora and framework caches. The repository keeps model
+# checkpoints, source manifests, metrics, and download/training scripts instead.
+.training-tmp/
+data/clip-pretrained/
+data/images/raw/
+data/images/torch-cache/
+data/images/*.zip
+data/images/archive/
+data/images/v3-sources/
+data/images/v3-prepared/
+data/images/v4-sources/
+data/images/v4-*-prepared/
+data/images/v4-*-audit/
+data/images/v5-joint-prepared/
+data/images/pothole-detection-prepared/
+data/images/pothole-detector-rdd/
+
+# Training run outputs. Promoted checkpoints and final metrics live in ml/ and data/.
+data/image-v2-run/
+data/image-v3-run/
+data/image-v4-*-run/
+data/image-v4-*-recovery/
+data/image-v5-joint-run/
+data/image-v6-clip-run/
+data/pothole-detector-runs/
+yolov8n.pt
+
+# Local review/package artifacts
+report-work/
+JanSamadhan_Review_Package.zip
