@@ -1,0 +1,352 @@
+{
+  "category": {
+    "validation": {
+      "report": {
+        "Garbage": {
+          "precision": 1.0,
+          "recall": 0.8333333333333334,
+          "f1-score": 0.9090909090909091,
+          "support": 36.0
+        },
+        "Other": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 36.0
+        },
+        "Road Damage": {
+          "precision": 0.3333333333333333,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.4444444444444444,
+          "support": 36.0
+        },
+        "Sewerage": {
+          "precision": 1.0,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.5,
+          "support": 36.0
+        },
+        "Streetlight": {
+          "precision": 0.18181818181818182,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.23529411764705882,
+          "support": 36.0
+        },
+        "Water Supply": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 36.0
+        },
+        "accuracy": 0.5277777777777778,
+        "macro avg": {
+          "precision": 0.5858585858585857,
+          "recall": 0.5277777777777778,
+          "f1-score": 0.5148049118637353,
+          "support": 216.0
+        },
+        "weighted avg": {
+          "precision": 0.5858585858585859,
+          "recall": 0.5277777777777778,
+          "f1-score": 0.5148049118637353,
+          "support": 216.0
+        }
+      },
+      "labels": [
+        "Garbage",
+        "Other",
+        "Road Damage",
+        "Sewerage",
+        "Streetlight",
+        "Water Supply"
+      ],
+      "confusion_matrix": [
+        [
+          30,
+          0,
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          30,
+          0
+        ],
+        [
+          0,
+          0,
+          24,
+          0,
+          12,
+          0
+        ],
+        [
+          0,
+          0,
+          12,
+          12,
+          12,
+          0
+        ],
+        [
+          0,
+          0,
+          24,
+          0,
+          12,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          36
+        ]
+      ]
+    },
+    "test": {
+      "report": {
+        "Garbage": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 36.0
+        },
+        "Other": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 36.0
+        },
+        "Road Damage": {
+          "precision": 0.6666666666666666,
+          "recall": 1.0,
+          "f1-score": 0.8,
+          "support": 36.0
+        },
+        "Sewerage": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666,
+          "support": 36.0
+        },
+        "Streetlight": {
+          "precision": 1.0,
+          "recall": 0.5,
+          "f1-score": 0.6666666666666666,
+          "support": 36.0
+        },
+        "Water Supply": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 36.0
+        },
+        "accuracy": 0.4166666666666667,
+        "macro avg": {
+          "precision": 0.3611111111111111,
+          "recall": 0.4166666666666667,
+          "f1-score": 0.35555555555555557,
+          "support": 216.0
+        },
+        "weighted avg": {
+          "precision": 0.3611111111111111,
+          "recall": 0.4166666666666667,
+          "f1-score": 0.35555555555555557,
+          "support": 216.0
+        }
+      },
+      "labels": [
+        "Garbage",
+        "Other",
+        "Road Damage",
+        "Sewerage",
+        "Streetlight",
+        "Water Supply"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          18,
+          18,
+          0,
+          0,
+          0
+        ],
+        [
+          36,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          36,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          36,
+          0,
+          0
+        ],
+        [
+          18,
+          0,
+          0,
+          0,
+          18,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          36,
+          0,
+          0
+        ]
+      ]
+    }
+  },
+  "urgency": {
+    "validation": {
+      "report": {
+        "High": {
+          "precision": 0.3333333333333333,
+          "recall": 0.25,
+          "f1-score": 0.2857142857142857,
+          "support": 72.0
+        },
+        "Low": {
+          "precision": 0.3333333333333333,
+          "recall": 0.5833333333333334,
+          "f1-score": 0.42424242424242425,
+          "support": 72.0
+        },
+        "Medium": {
+          "precision": 0.3333333333333333,
+          "recall": 0.16666666666666666,
+          "f1-score": 0.2222222222222222,
+          "support": 72.0
+        },
+        "accuracy": 0.3333333333333333,
+        "macro avg": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.3107263107263107,
+          "support": 216.0
+        },
+        "weighted avg": {
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "f1-score": 0.31072631072631074,
+          "support": 216.0
+        }
+      },
+      "labels": [
+        "High",
+        "Low",
+        "Medium"
+      ],
+      "confusion_matrix": [
+        [
+          18,
+          42,
+          12
+        ],
+        [
+          18,
+          42,
+          12
+        ],
+        [
+          18,
+          42,
+          12
+        ]
+      ]
+    },
+    "test": {
+      "report": {
+        "High": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1-score": 0.0,
+          "support": 72.0
+        },
+        "Low": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1-score": 0.6666666666666666,
+          "support": 72.0
+        },
+        "Medium": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1-score": 1.0,
+          "support": 72.0
+        },
+        "accuracy": 0.6666666666666666,
+        "macro avg": {
+          "precision": 0.5,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.5555555555555555,
+          "support": 216.0
+        },
+        "weighted avg": {
+          "precision": 0.5,
+          "recall": 0.6666666666666666,
+          "f1-score": 0.5555555555555556,
+          "support": 216.0
+        }
+      },
+      "labels": [
+        "High",
+        "Low",
+        "Medium"
+      ],
+      "confusion_matrix": [
+        [
+          0,
+          72,
+          0
+        ],
+        [
+          0,
+          72,
+          0
+        ],
+        [
+          0,
+          0,
+          72
+        ]
+      ]
+    }
+  },
+  "seed": 42,
+  "rows": 3888,
+  "splits": {
+    "train": 3456,
+    "validation": 216,
+    "test": 216
+  },
+  "method": "Word TF-IDF (1,2 grams) + balanced Logistic Regression; phrase-family split before expansion. Urgency context phrases also held out.",
+  "limitations": "Synthetic template benchmark only. Shared vocabulary and locality context remain. Not an estimate of accuracy on actual citizens. Test phrases are authored by the same generator author. No real deployment or calibrated confidence.",
+  "threshold": 0.45
+}
