@@ -1,0 +1,88 @@
+Creative Commons Attribution-ShareAlike 4.0 International
+
+Full legal text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by-sa/4.0/
+
+===============================================================================
+SOURCE ATTRIBUTION REQUIREMENT
+===============================================================================
+
+This dataset contains or is derived from data originally created by:
+Vivek Mathew and Haji Shariefullah
+Original source: https://newdata.opencity.in
+Original license: Creative Commons Attribution Share-Alike
+
+When using this data, you must credit BOTH:
+1. The original creators (Vivek Mathew and Haji Shariefullah)
+2. The research team: Shyam Tripathi, Kothamsu Hridayesh, K. Ashwini, Kritika Agrahari
+3. The affiliated institution: Amrita Vishwa Vidyapeetham, Chennai Campus
+
+===============================================================================
+LICENSE TERMS
+===============================================================================
+
+You are free to:
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material for any purpose, even commercially.
+
+Under the following terms:
+- Attribution — You must give appropriate credit to BOTH the original creators 
+  (Vivek Mathew and Haji Shariefullah) AND the research team, provide a 
+  link to this license, and indicate if changes were made.
+- ShareAlike — If you remix, transform, or build upon the material, you must 
+  distribute your contributions under the same license (CC BY-SA 4.0) as the original.
+
+No additional restrictions — You may not apply legal terms or technological 
+measures that restrict others from doing anything the license permits.
+
+===============================================================================
+HOW TO PROVIDE ATTRIBUTION
+===============================================================================
+
+When using this data, include this attribution statement:
+
+"This work is based on data originally created by Vivek Mathew and Haji Shariefullah 
+(via Opencity.in), with modifications and enhancements by the CivicComp-HiEn research team 
+(Shyam Tripathi, Kothamsu Hridayesh, K. Ashwini, Kritika Agrahari) from Amrita Vishwa 
+Vidyapeetham, Chennai Campus. Licensed under Creative Commons Attribution-ShareAlike 4.0 International."
+
+OR in citation format:
+
+@INPROCEEDINGS{CivicComp,
+  author={Tripathi, Shyam and Hridayesh, Kothamasu and Ashwini, K.},
+  booktitle={2026 International Conference on Wireless Communications Signal Processing and Networking (WiSPNET)}, 
+  title={CivicComp: A Hindi–English Corpus for Automated Civic Complaint Categorization}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={1-6},
+  keywords={Wireless communication;Communication systems;Computer networks;Protocols;HTTP;Internet;Regional area networks;Electronic mail;Radio access networks;Storage area networks;Civic Grievance;Multilingual Text Classification;Low-Resource NLP;Dataset Benchmarking;Hindi-English Code-Mixing},
+  doi={10.1109/WiSPNET69615.2026.11489415}
+}
+
+
+===============================================================================
+METADATA FOR THIS DATASET
+===============================================================================
+
+Dataset Title: CivicComp-HiEn: A Hindi-English Benchmark for Civic Complaint Classification
+Original Creators: Vivek Mathew, Haji Shariefullah
+Research Team: Shyam Tripathi, Kothamasu Hridayesh, K. Ashwini
+Affiliation: Amrita School of Computing, Amrita Vishwa Vidyapeetham, Chennai, India
+License: Creative Commons Attribution-ShareAlike 4.0 International
+License URL: https://creativecommons.org/licenses/by-sa/4.0/
+Date Published: 03-02-2026
+Source URL: https://newdata.opencity.in
+Dataset URL: https://www.kaggle.com/datasets/shyamtripathi373/civiccomp-hien-hindienglish-civic-complaints
+Associated Paper: "CivicComp: A Hindi–English Corpus for Automated Civic Complaint Categorization"
+Modifications: 
+  - Removed unnecessary columns and all personally identifiable information (PII)
+  - Regenerated unique identifiers using standardized format (BBMP_0000001)
+  - Added Hindi and Hinglish translations aligned with original English complaints
+  - Created train/test/dev splits for machine learning applications
+  - Enhanced for benchmarking civic complaint classification tasks
+
+===============================================================================
+Important: This is a human-readable summary. For the complete legal terms, 
+see the full license at: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+===============================================================================
