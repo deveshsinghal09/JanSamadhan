@@ -1,0 +1,25 @@
+/* Refined application surfaces; keep Lucknow photography and the civic green identity. */
+:root{--muted:#53685f;--line:#dce5df;font-size:15px}
+body{background:#f4f6f3;color:#203c32}
+main{max-width:1560px;padding:36px 40px 54px}
+h1{font-family:'Segoe UI',Arial,sans-serif;font-size:clamp(28px,2.6vw,40px);letter-spacing:-.035em;font-weight:650;line-height:1.16;text-wrap:balance}
+.page-heading{margin-bottom:32px}.page-heading p:not(.eyebrow){font-size:14px;color:#52695c;max-width:68ch;margin-top:10px}
+.topbar{background:#fff;border-bottom:1px solid var(--line)}
+.sidebar{background:#143d33}.sidebar nav button{font-size:14px;min-height:48px}.sidebar nav button.active{box-shadow:none;background:#2a5c4a}
+.panel{box-shadow:none;border:1px solid var(--line);border-radius:16px;padding:30px}
+.panel>p,.footnote{color:#52695c}.footnote{font-size:12px;line-height:1.7}
+label{font-size:14px;font-weight:550;color:#294c3c}label small{font-size:12px;font-weight:400;color:#53695c}
+input,select,textarea{font-size:15px;border-radius:10px;padding:13px 14px;min-height:48px}textarea{resize:vertical;line-height:1.7}input::placeholder,textarea::placeholder{color:#65766d}
+.primary,.secondary{font-size:14px;min-height:48px;box-shadow:none;border-radius:10px}.primary{background:#17634e}.text-button{font-size:13px;min-height:44px}
+.table-wrap{box-shadow:none;border-radius:12px}th{font-size:12px;text-transform:none;letter-spacing:0}td{font-size:13px}.issue-title{font-size:14px}.badge{font-size:12px}.report-link,td small{font-size:12px}
+.assigned-box{border:1px solid #d4e1d8;background:#f7faf7;border-radius:12px}.assigned-box p{font-size:13px}
+.modern-report{grid-template-columns:minmax(0,1.35fr) minmax(320px,.85fr);align-items:start;gap:28px}
+.modern-report .report-form{background:#fff}.report-form fieldset{border:0;padding:0;margin:0;min-width:0}.report-form fieldset:disabled{opacity:.75}
+.form-section-title{padding-bottom:26px;margin-bottom:26px;border-bottom:1px solid var(--line)}.form-section-title>span{font-size:12px;font-weight:650;color:#456d58}.form-section-title h2{font-size:26px;margin:8px 0}.form-section-title p{font-size:14px;color:#52695c;max-width:60ch}
+.modern-report .two-col{gap:20px}.modern-report input[type=file]{border:1px dashed #93ab9b;background:#f5f8f4;padding:14px;font-size:12px}.modern-report input::file-selector-button{border:0;background:#e2eee4;color:#214d37;padding:9px 12px;border-radius:6px;margin-right:10px;font-weight:600}
+.modern-report .preview{position:sticky;top:24px;background:#fff;padding:30px;overflow-wrap:anywhere}.modern-report .preview>h2{font-size:32px;line-height:1.2;margin-block:16px}.modern-report .preview ol{padding-left:22px;line-height:2.1}.modern-report .preview .eyebrow{letter-spacing:.06em;font-size:11px}.modern-report .preview .route-destination{font-weight:650;color:#244c37;font-size:17px;margin-top:22px}.modern-report .preview .primary{margin-top:26px}
+.assessment-label{margin-top:25px;font-size:12px;color:#52695c}.evidence-summary{margin:22px 0;padding-block:20px;border-block:1px solid var(--line)}.evidence-summary>strong{font-size:15px;color:#225e40}.evidence-summary.conflict>strong{color:#8c451e}.evidence-summary p{font-size:13px;margin-top:8px;color:#4e6357}.evidence-summary dl{margin:18px 0 0}.evidence-summary dl>div{display:flex;justify-content:space-between;gap:18px;margin-top:10px;font-size:12px}.evidence-summary dt{color:#52695c;flex-shrink:0}.evidence-summary dd{margin:0;text-align:right;font-weight:600}
+.evidence-image{display:block;width:100%;border-radius:12px;background:#f1f4f0;margin:16px 0}
+@media(max-width:1050px){main{padding:28px}.modern-report{grid-template-columns:minmax(0,1fr) minmax(285px,.85fr);gap:18px}.modern-report .panel{padding:22px}}
+@media(max-width:850px){main{padding:24px 18px}.modern-report{grid-template-columns:1fr}.modern-report .preview{position:static}.panel{padding:22px}.modern-report .two-col{grid-template-columns:1fr;gap:0}.page-heading{margin-bottom:24px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
