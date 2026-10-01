@@ -1,0 +1,91 @@
+{
+  "downloaded_image_files": 10066,
+  "retained_images": 9969,
+  "groups": 1523,
+  "rejected": {
+    "exact_duplicate": 26,
+    "too_small": 71
+  },
+  "class_counts": {
+    "train": {
+      "Pothole": 1066,
+      "Road scene / review": 3104,
+      "Road surface issue": 1186,
+      "Waterlogging / flooded road": 323,
+      "Garbage / litter": 419,
+      "Other / review": 154,
+      "Streetlight infrastructure": 538,
+      "Traffic sign / review": 154
+    },
+    "validation": {
+      "Road scene / review": 600,
+      "Road surface issue": 196,
+      "Pothole": 209,
+      "Waterlogging / flooded road": 55,
+      "Streetlight infrastructure": 165,
+      "Garbage / litter": 80,
+      "Other / review": 37,
+      "Traffic sign / review": 32
+    },
+    "test": {
+      "Streetlight infrastructure": 116,
+      "Waterlogging / flooded road": 62,
+      "Garbage / litter": 62,
+      "Pothole": 255,
+      "Road scene / review": 779,
+      "Road surface issue": 311,
+      "Other / review": 30,
+      "Traffic sign / review": 36
+    }
+  },
+  "source_counts": {
+    "RDD2022-India": 7706,
+    "RoadwayFlood": 440,
+    "PilesOfGarbage": 273,
+    "GINI": 423,
+    "Streetlight": 819,
+    "SignScenes": 222,
+    "TACO": 86
+  },
+  "split_seed": 115,
+  "sources": [
+    {
+      "name": "SpotGarbage GINI, explicitly annotated photographs",
+      "url": "https://github.com/spotgarbage/spotgarbage-GINI",
+      "scope": "Annotated garbage piles/litter; non-garbage photographs used only as review examples. Local academic use; original image rights remain with creators."
+    },
+    {
+      "name": "RDD2022 India",
+      "url": "https://doi.org/10.6084/m9.figshare.21431547.v1",
+      "scope": "Indian road photographs with PASCAL VOC damage boxes. CC BY-SA 4.0; use labeled training partition only."
+    },
+    {
+      "name": "Roadway Flooding",
+      "url": "https://doi.org/10.17632/t395bwcvbw.1",
+      "scope": "441 roadway photographs, segmentation masks excluded. CC BY 4.0."
+    },
+    {
+      "name": "Urban Streetlight Analysis",
+      "url": "https://github.com/Team16Project/Street-Light-Dataset",
+      "scope": "Original streetlight photographs. Combined infrastructure class: daytime/off lamps are NOT evidence of electrical failure. Local academic use; no redistribution."
+    },
+    {
+      "name": "TACO",
+      "url": "https://github.com/pedropro/TACO",
+      "scope": "Only photos with at least five annotated litter objects and sufficient annotated area; not isolated-object photographs. Local use; per-photo rights retained."
+    },
+    {
+      "name": "Piles of Garbage",
+      "url": "https://www.kaggle.com/datasets/hammadarshad18/garbage-detection",
+      "scope": "YOLO-annotated garbage piles, Pakistan and web photographs. CC0 listing; overlaps with GINI are deduplicated."
+    },
+    {
+      "name": "Portuguese traffic-sign photographs",
+      "url": "https://www.kaggle.com/datasets/danielvareta/damaged-signs-dataset",
+      "scope": "500-photo sample. Source labels specify sign type, not condition: used only as Traffic sign / review, never as confirmed damage. CC0 listing."
+    }
+  ],
+  "split_policy": "Exact pixels, 256-bit perceptual dHash radius 4, source families, TACO acquisition batches, streetlight dates and consecutive RDD ID blocks of 50 stay in a single split. Approximate 70/15/15 group split, selected for label balance only before training. RDD ID blocks are a conservative sequence heuristic, not verified location separation.",
+  "label_policy": "No old Road Issues folder-labeled images; no TrashNet isolated objects. GINI positives are explicitly annotated and visually screened for piles/scattered litter; TACO requires >=5 annotated objects and >=4% annotated area. Flood masks are excluded. Indian road labels come from XML damage annotations. Streetlights are an infrastructure scene class, not a diagnosis of failure.",
+  "limitations": "Scene classification, not object detection. Multiple issues may coexist. Streetlight operation, electrical faults, parking legality and sewer blockage cannot be inferred reliably from these labels. No verified Lucknow photo holdout. Source and acquisition biases remain despite group splitting. Dataset sizes count retained original photographs, not augmentation copies. No raw-image redistribution."
+}

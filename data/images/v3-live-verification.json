@@ -1,0 +1,34 @@
+[
+  {
+    "expected": "Garbage / litter",
+    "predicted": "Garbage / litter",
+    "confidence": 1,
+    "manualReview": false,
+    "modelVersion": "image-v3",
+    "source_path": "data/images/v3-sources/garbage-piles/Piles-Of-Garbage/obj/pile_163.jpg"
+  },
+  {
+    "expected": "Waterlogging / flooded road",
+    "predicted": "Waterlogging / flooded road",
+    "confidence": 0.9991,
+    "manualReview": true,
+    "modelVersion": "image-v3",
+    "source_path": "data/images/v3-sources/roadway-flood/Dataset/images/image_265.jpg"
+  },
+  {
+    "expected": "Traffic sign / review",
+    "predicted": "Traffic sign / review",
+    "confidence": 1,
+    "manualReview": true,
+    "modelVersion": "image-v3",
+    "source_path": "data/images/v3-sources/sign-crops/img_150.jpg"
+  },
+  {
+    "expected": "Other / review",
+    "predicted": "Other / review",
+    "confidence": 0.9999,
+    "manualReview": true,
+    "modelVersion": "image-v3",
+    "source_path": "data/images/v3-sources/garbage-piles/Piles-Of-Garbage/obj/plastic472.jpg"
+  }
+]

@@ -1,0 +1,58 @@
+[
+  {
+    "epoch": 1,
+    "stage": "classifier warm-up",
+    "train_loss": 0.6580037209570133,
+    "validation_macro_f1": 0.7996191366693296,
+    "validation_accuracy": 0.740174672489083
+  },
+  {
+    "epoch": 2,
+    "stage": "classifier warm-up",
+    "train_loss": 0.4254223476700519,
+    "validation_macro_f1": 0.7718416987118218,
+    "validation_accuracy": 0.6681222707423581
+  },
+  {
+    "epoch": 3,
+    "stage": "full CNN fine-tuning",
+    "train_loss": 0.3597894883650239,
+    "validation_macro_f1": 0.8130548721279245,
+    "validation_accuracy": 0.715429403202329
+  },
+  {
+    "epoch": 4,
+    "stage": "full CNN fine-tuning",
+    "train_loss": 0.316896301363745,
+    "validation_macro_f1": 0.8171318818632768,
+    "validation_accuracy": 0.7678311499272198
+  },
+  {
+    "epoch": 5,
+    "stage": "full CNN fine-tuning",
+    "train_loss": 0.29412357969218134,
+    "validation_macro_f1": 0.8441825130396393,
+    "validation_accuracy": 0.7765647743813683
+  },
+  {
+    "epoch": 6,
+    "stage": "full CNN fine-tuning",
+    "train_loss": 0.26532320176950797,
+    "validation_macro_f1": 0.8110220129316364,
+    "validation_accuracy": 0.6994177583697234
+  },
+  {
+    "epoch": 7,
+    "stage": "full CNN fine-tuning",
+    "train_loss": 0.2488128027196304,
+    "validation_macro_f1": 0.8178034395989795,
+    "validation_accuracy": 0.7016011644832606
+  },
+  {
+    "epoch": 8,
+    "stage": "full CNN fine-tuning",
+    "train_loss": 0.2384282942809817,
+    "validation_macro_f1": 0.8275486215690865,
+    "validation_accuracy": 0.74235807860262
+  }
+]
