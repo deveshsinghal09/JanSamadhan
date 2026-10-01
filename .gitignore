@@ -51,3 +51,4 @@ yolov8n.pt
 # Local review/package artifacts
 report-work/
 JanSamadhan_Review_Package.zip
+TRAIN_IMAGES.cmd

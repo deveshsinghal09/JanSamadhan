@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {combineEvidence} from '../backend/evidence.js';
+const text={category:'Road Damage',categoryConfidence:.9,manualReview:false,urgency:'Medium',reason:'Predicted from complaint text'};
+test('pothole text plus flooded-photo prediction retains road category and flags review',()=>{const result=combineEvidence(text,{label:'Waterlogging / flooded road',confidence:.94,manualReview:true});assert.equal(result.category,'Road Damage');assert.equal(result.manualReview,true);assert.equal(result.evidence.status,'conflict');assert.equal(result.evidence.photoLabel,'Waterlogging / flooded road');assert.equal(text.manualReview,false);});
+test('accepted road photo confirms road text without fabricating a combined score',()=>{const result=combineEvidence(text,{label:'Pothole',confidence:.91,manualReview:false});assert.equal(result.evidence.status,'agreement');assert.equal(result.categoryConfidence,.9);assert.equal(result.manualReview,false);});
+test('opposing categories require review',()=>{assert.equal(combineEvidence(text,{label:'Garbage / litter',confidence:.95,manualReview:false}).manualReview,true);});
+test('photograph cannot bypass jurisdiction review or change urgency',()=>{const result=combineEvidence({...text,category:'Other',manualReview:true,urgency:'High'},{label:'Pothole',confidence:.99,manualReview:false});assert.equal(result.category,'Other');assert.equal(result.manualReview,true);assert.equal(result.urgency,'High');assert.equal(result.evidence.status,'jurisdiction-review');});
+test('uncertain photo cannot override description',()=>{const result=combineEvidence(text,{label:'Waterlogging / flooded road',confidence:.4,manualReview:true});assert.equal(result.category,'Road Damage');assert.equal(result.evidence.status,'photo-inconclusive');});
+test('text-only reporting remains supported',()=>{assert.equal(combineEvidence(text,null).decisionMethod,'text-only');});
