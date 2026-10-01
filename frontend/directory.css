@@ -1,0 +1,9 @@
+.department-contacts{margin-top:20px;border-top:1px solid var(--line);padding-top:14px}
+.department-contacts summary,.department-reference summary{cursor:pointer;font-weight:650;padding:8px 0;line-height:1.5}
+.department-contacts summary:focus-visible,.department-reference summary:focus-visible{outline:3px solid #b9842d;outline-offset:3px}
+.department-contact-body{max-width:72ch;padding:12px 0 4px;overflow-wrap:anywhere}
+.department-contact-body p{margin-bottom:10px}
+.department-contact-body a,.contact-strip p a,.department-reference a{text-decoration:underline;text-underline-offset:3px}
+.department-reference{margin-top:10px;font-size:13px}
+.department-reference p{margin:8px 0}
+.directory-list article>div{min-width:0}
