@@ -3,7 +3,7 @@ import {prepareUpload} from './upload-image.js';
 import DepartmentDirectory from './Directory.jsx';
 import React,{useEffect,useState,useRef} from 'react';
 import {createRoot} from 'react-dom/client';
-import {LayoutDashboard,FilePlus2,ClipboardList,MapPinned,Building2,FlaskConical,LogOut,ArrowUpRight,ArrowRight,Search,CheckCircle2,Clock3,AlertTriangle,LocateFixed,X,ChevronRight,Download,Leaf,ShieldCheck,Menu,RefreshCw} from 'lucide-react';
+import {LayoutDashboard,FilePlus2,ClipboardList,MapPinned,Building2,LogOut,ArrowUpRight,ArrowRight,Search,CheckCircle2,Clock3,AlertTriangle,LocateFixed,X,ChevronRight,Download,Leaf,ShieldCheck,Menu,RefreshCw} from 'lucide-react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './style.css';
@@ -11,14 +11,13 @@ import './polish.css';
 import './hero.css';
 import './modern.css';
 import './rumi-hero.css';
-import Evidence from './Evidence.jsx';
 import {ImageResult,PhotoPreview} from './ImageModel.jsx';
 import lucknowPhoto from './assets/lucknow-hero.jpg';
 import {api} from './api.js';
 const fmt=d=>new Date(d).toLocaleString('en-IN',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
 const percent=n=>Math.round((n||0)*100)+'%';
-const icons={overview:LayoutDashboard,report:FilePlus2,complaints:ClipboardList,map:MapPinned,directory:Building2,evidence:FlaskConical};
-const labels={overview:'Overview',report:'Report an issue',complaints:'Complaints',map:'City map',directory:'Department directory',evidence:'Model & dataset'};
+const icons={overview:LayoutDashboard,report:FilePlus2,complaints:ClipboardList,map:MapPinned,directory:Building2};
+const labels={overview:'Overview',report:'Report an issue',complaints:'Complaints',map:'City map',directory:'Department directory'};
 function Badge({children}){return <span className={'badge '+String(children).toLowerCase().replaceAll(' ','-')}>{children}</span>}
 function App(){
  const [intro,setIntro]=useState(true);
@@ -40,7 +39,6 @@ function App(){
  {page==='report'&&<Report directory={directory} onSaved={async c=>{await refresh();setItems(previous=>[c,...previous.filter(item=>item.id!==c.id)]);setPage('complaints');setSelected(c);setNotice('Report '+c.id+' saved to the prototype. No government submission was made.')}}/>}
  {page==='directory'&&<Directory directory={directory}/>}
  {page==='map'&&<><div className="page-heading"><div><p className="eyebrow">LOCATION & DISTRIBUTION</p><h1>Your city, report by report.</h1><p>Markers show reports visible to this account. Click one to inspect its status.</p></div></div><CityMap items={items} onSelect={setSelected}/><div className="analytics-grid">{directory.departments.map(d=><div key={d.id} className="distribution"><span>{d.category}</span><strong>{items.filter(c=>c.department===d.id).length}</strong><progress max={Math.max(1,items.length)} value={items.filter(c=>c.department===d.id).length}/></div>)}</div><p className="footnote">Approximate demo coordinates. Online base map © OpenStreetMap contributors. Ward boundaries and municipal ownership are not inferred.</p></>}
- {page==='evidence'&&<Evidence/>}
  </main><footer>JanSamadhan <span>Review 2 prototype · Lucknow pilot · {health?.storage||'Connecting'}</span></footer></div>{selected&&<Detail item={items.find(i=>i.id===selected.id)||selected} user={user} directory={directory} close={()=>setSelected(null)} onUpdated={refresh}/>}</div>
 }
 function Login({onLogin}){const [email,setEmail]=useState('citizen@demo.in'),[password,setPassword]=useState('Review@123'),[name,setName]=useState(''),[register,setRegister]=useState(false),[error,setError]=useState(''),[busy,setBusy]=useState(false);async function submit(e){e.preventDefault();setBusy(true);setError('');try{if(register)await api('/auth/register',{method:'POST',body:JSON.stringify({name,email,password})});onLogin(await api('/auth/login',{method:'POST',body:JSON.stringify({email,password})}));}catch(e){setError(e.message)}finally{setBusy(false)}}return <div className="login"><section className="login-story"><img className="login-landmark" src={lucknowPhoto} alt="Rumi Darwaza in Lucknow" fetchPriority="high"/><div className="brand"><span className="brand-icon"><Leaf/></span>JanSamadhan</div><p className="eyebrow">LUCKNOW · UTTAR PRADESH</p><h1>A city worth<br/>caring for.<br/><em>A voice that matters.</em></h1><p>A civic reporting desk that connects each issue<br/>to a responsible department and a traceable update.</p><div className="login-steps"><span>REPORT</span><ArrowRight/><span>ROUTE</span><ArrowRight/><span>TRACK</span></div><small>Academic prototype · Persistent complaint tracking<br/>Independent student project; not an official government service.<br/><a href="https://commons.wikimedia.org/wiki/File:Rumi_Darwaja_(Rumi_Gate).jpg" target="_blank" rel="noreferrer">Photo: Aryanmathurphotography · cropped / overlay</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noreferrer">CC BY-SA 4.0</a></small></section><section className="login-form"><div><span className="demo-tag">REVIEW 2 / WORKING PROTOTYPE</span><h2>{register?'Create a citizen account':'Welcome to your civic desk'}</h2><p>Sign in to report an issue or manage a department queue.</p><form onSubmit={submit}>{register&&<label>Your name<input required minLength={2} maxLength={80} value={name} onChange={e=>setName(e.target.value)}/></label>}<label>Email address<input type="email" required value={email} onChange={e=>setEmail(e.target.value)}/></label><label>Password<input type="password" required minLength={8} value={password} onChange={e=>setPassword(e.target.value)}/></label>{error&&<p role="alert" className="error-text">{error}</p>}<button className="primary full" disabled={busy}>{busy?'Signing in…':register?'Create account & sign in':'Sign in'}<ArrowRight size={18}/></button></form><button className="text-button" onClick={()=>{setRegister(!register);setError('')}}>{register?'Already registered? Sign in':'New citizen? Create an account'}</button><div className="demo-accounts"><strong>Explore the demo</strong><p>Choose an account, then sign in. Password: <code>Review@123</code></p><div>{[['Citizen','citizen'],['Sanitation officer','sanitation'],['Administrator','admin']].map(([label,id])=><button key={id} onClick={()=>{setEmail(id+'@demo.in');setPassword('Review@123');setRegister(false)}}>{label}</button>)}</div><small>Other officer accounts: roads, lighting, water, sewer, review @demo.in</small></div></div></section></div>}
