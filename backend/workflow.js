@@ -2,7 +2,7 @@ const reject = (status, message) => { throw Object.assign(new Error(message), {s
 
 export function canAccess(user, complaint) {
   return user.role === 'admin' || (user.role === 'citizen' && complaint.userId === user.id)
-    || (user.role === 'officer' && complaint.department === user.department);
+    || (user.role === 'officer' && !!user.department && user.department !== 'review' && complaint.department === user.department);
 }
 
 export function applyAction(c, user, body, directory) {
@@ -21,6 +21,8 @@ export function applyAction(c, user, body, directory) {
     c.previousDepartment = c.department;
     c.department = 'review'; c.status = 'Needs Review'; c.resolutionDisputed = true;
     note = 'Citizen reports that the issue remains unresolved: ' + note;
+  } else if (!['admin','officer'].includes(user.role)) {
+    reject(403, 'Staff access required');
   } else if (department !== undefined) {
     if (user.role !== 'admin') reject(403, 'Only an administrator can assign departments');
     const d = directory.departments.find(d => d.id === department);

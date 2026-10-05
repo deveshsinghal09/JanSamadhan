@@ -26,6 +26,7 @@ test('real account lifecycle, officer authorization, citizen visibility and pers
   assert.equal(officer.data.role,'citizen');assert.equal((await call('/admin/users',{cookie:citizen.cookie})).status,403);
   assert.equal((await call('/admin/users/'+officer.data.id,{cookie:admin.cookie,method:'PATCH',body:{role:'officer',department:'roads'}})).status,200);
   assert.equal((await call('/auth/me',{cookie:officer.cookie})).data.role,'officer');
+  assert.equal((await call('/admin/users/'+officer.data.id,{cookie:admin.cookie,method:'PATCH',body:{role:'officer',department:'review'}})).status,400);
   const payload={description:'A deep pothole needs urgent road repairs.',locality:'Hazratganj',lat:26.8467,lng:80.9462};
   const created=await call('/complaints',{cookie:citizen.cookie,body:payload});assert.equal(created.status,201);
   const id=created.data.id;assert.equal((await call('/complaints',{cookie:other.cookie})).data.length,0);

@@ -95,12 +95,14 @@ app.get('/api/admin/users',(req,res)=>{
 app.patch('/api/admin/users/:id',async(req,res)=>{
  if(req.user.role!=='admin')return fail(res,403,'Administrator access required');
  const result=await mutate(state=>{
+  const actor=state.users.find(u=>u.id===req.user.id);
+  if(!actor||actor.role!=='admin'||isDisabledAccount(actor))reject(403,'Administrator access required');
   const user=state.users.find(u=>u.id===req.params.id);
   if(!user||isDisabledAccount(user))reject(404,'Account not found');
   if(user.role==='admin')reject(400,'Administrator permissions cannot be changed here');
   const {role,department}=req.body;
   if(!['citizen','officer'].includes(role))reject(400,'Choose citizen or officer');
-  if(role==='officer'&&!directory.departments.some(d=>d.id===department))reject(400,'Choose a department');
+  if(role==='officer'&&!directory.departments.some(d=>d.id===department&&d.id!=='review'))reject(400,'Choose a department');
   user.role=role;user.department=role==='officer'?department:null;
   return publicUser(user);
  });res.json(result);

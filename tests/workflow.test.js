@@ -13,3 +13,10 @@ test('administrator can clear a legacy review in its current department',()=>{co
 test('external referrals require administrator, authority and review state',()=>{const c=complaint();run(c,admin,{action:'request-review'});assert.throws(()=>run(c,admin,{action:'refer'}),e=>e.status===400);run(c,admin,{action:'refer',authority:'PWD Lucknow'});assert.equal(c.status,'Referred');assert.equal(c.referral.authority,'PWD Lucknow');assert.notEqual(c.status,'Resolved');run(c,admin,{status:'Needs Review'});assert.equal(c.status,'Needs Review')});
 test('stale updates are rejected and action notes preserve audit state',()=>{const c=complaint();const old=c.updatedAt;run(c,officer,{action:'note',expectedUpdatedAt:old});assert.throws(()=>run(c,admin,{urgency:'High',expectedUpdatedAt:old}),e=>e.status===409);assert.equal(c.urgency,'Medium');assert.equal(c.history[0].before.status,'Assigned')});
 test('empty, multiple and no-op actions are rejected',()=>{const c=complaint();assert.throws(()=>run(c,admin,{department:''}),e=>e.status===400);assert.throws(()=>run(c,admin,{department:'roads',urgency:'High'}),e=>e.status===400);assert.throws(()=>run(c,officer,{urgency:'Medium'}),e=>e.status===400);assert.throws(()=>run(c,officer,{status:'In Progress',note:'   '}),e=>e.status===400)});
+
+test('review queue and unassigned records cannot be accessed by officers',()=>{
+ const c=complaint();c.department='review';
+ assert.equal(canAccess({...officer,department:'review'},c),false);
+ c.department=undefined;assert.equal(canAccess({...officer,department:undefined},c),false);
+ assert.equal(canAccess(admin,c),true);
+});
