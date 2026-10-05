@@ -1,15 +1,109 @@
 {
-  "state":"Uttar Pradesh","city":"Lucknow","verifiedOn":"2026-09-08",
-  "disclaimer":"Academic pilot. Assignments are internal demo queues, not submissions to government. Officer roles below are proposed routing targets; confirm zone and asset ownership with the control room. No current named officer is asserted.",
-  "contact":{"office":"Lucknow Nagar Nigam control room","phone":"1533","alternate":"9219902911 / 9219902912 / 9219902913 / 9219902914","email":"nnlko@nic.in","address":"Trilokinath Road, Lalbagh, Lucknow, Uttar Pradesh 226001","source":"https://lmc.up.nic.in/helpline.aspx"},
-  "departments":[
-    {"id":"sanitation","category":"Garbage","name":"LMC · Sanitation / Health","officer":"Zonal Sanitary Officer / Sanitary Inspector","escalation":"Zonal Officer, then Municipal Commissioner grievance office","scope":"Municipal garbage collection, sweeping and open-drain cleaning after inspection.","source":"https://lmc.up.nic.in/pdf/amrut/OfficersinLNN.pdf","note":"Historical directory supports role structure only; it is not a current personnel roster."},
-    {"id":"roads","category":"Road Damage","name":"LMC · Engineering","officer":"Junior Engineer → Executive Engineer, relevant zone","escalation":"Zonal Officer / Engineering head","scope":"Municipal roads only. PWD, NHAI, LDA and privately owned roads require ownership review.","source":"https://lmc.up.nic.in/pdf/amrut/OfficersinLNN.pdf","note":"Proposed routing using historical engineering designations; road ownership must be confirmed."},
-    {"id":"lighting","category":"Streetlight","name":"LMC · Street Lighting","officer":"Street-lighting engineering desk, through control room","escalation":"Zonal Officer / responsible lighting engineer","scope":"Public streetlights. Household power outages and utility supply lines are outside this queue.","source":"https://lmc.up.nic.in/helpline.aspx","note":"Control room is verified; exact zone-level lighting officer requires confirmation."},
-    {"id":"water","category":"Water Supply","name":"Jal Kal · Water Supply","officer":"Executive Engineer, relevant Jal Kal zone","escalation":"General Manager, Jal Kal","scope":"Local municipal water supply. Major projects or non-municipal assets require ownership review.","source":"https://jklmc.gov.in/Contact.aspx","note":"Official directory was search-indexed, but direct retrieval failed. Confirm current zone contact; no personal number is hardcoded."},
-    {"id":"sewer","category":"Sewerage","name":"Jal Kal · Sewerage","officer":"Jal Kal zonal engineering desk / designated operator","escalation":"Executive Engineer / General Manager, Jal Kal","scope":"Sewer lines and manholes. Open roadside drains may belong to LMC sanitation/engineering and require triage.","source":"https://lmc.up.nic.in/pdf/citysanitaionplan.pdf","note":"Historical sanitation plan supports agency distinction; current operator and ownership need confirmation."},
-    {"id":"review","category":"Other","name":"Manual jurisdiction review","officer":"Demo grievance triage officer","escalation":"Confirm competent authority with LMC control room","scope":"Uncertain, mixed, outside-pilot or non-municipal issues. Do not automatically assign an unrelated department.","source":"https://lmc.up.nic.in/helpline.aspx","note":"Prototype safeguard, not an official government department."}
+  "state": "Uttar Pradesh",
+  "city": "Lucknow",
+  "verifiedOn": "2026-09-08",
+  "disclaimer": "JanSamadhan is an independent civic reporting service. Department queues are managed within this platform and do not automatically submit complaints to government offices. Confirm municipal ownership and the current official contact before an external referral.",
+  "contact": {
+    "office": "Lucknow Nagar Nigam control room",
+    "phone": "1533",
+    "alternate": "9219902911 / 9219902912 / 9219902913 / 9219902914",
+    "email": "nnlko@nic.in",
+    "address": "Trilokinath Road, Lalbagh, Lucknow, Uttar Pradesh 226001",
+    "source": "https://lmc.up.nic.in/helpline.aspx"
+  },
+  "departments": [
+    {
+      "id": "sanitation",
+      "category": "Garbage",
+      "name": "LMC · Sanitation / Health",
+      "officer": "Zonal Sanitary Officer / Sanitary Inspector",
+      "escalation": "Zonal Officer, then Municipal Commissioner grievance office",
+      "scope": "Municipal garbage collection, sweeping and open-drain cleaning after inspection.",
+      "source": "https://lmc.up.nic.in/pdf/amrut/OfficersinLNN.pdf",
+      "note": "Historical directory supports role structure only; it is not a current personnel roster."
+    },
+    {
+      "id": "roads",
+      "category": "Road Damage",
+      "name": "LMC · Engineering",
+      "officer": "Junior Engineer → Executive Engineer, relevant zone",
+      "escalation": "Zonal Officer / Engineering head",
+      "scope": "Municipal roads only. PWD, NHAI, LDA and privately owned roads require ownership review.",
+      "source": "https://lmc.up.nic.in/pdf/amrut/OfficersinLNN.pdf",
+      "note": "Proposed routing using historical engineering designations; road ownership must be confirmed."
+    },
+    {
+      "id": "lighting",
+      "category": "Streetlight",
+      "name": "LMC · Street Lighting",
+      "officer": "Street-lighting engineering desk, through control room",
+      "escalation": "Zonal Officer / responsible lighting engineer",
+      "scope": "Public streetlights. Household power outages and utility supply lines are outside this queue.",
+      "source": "https://lmc.up.nic.in/helpline.aspx",
+      "note": "Control room is verified; exact zone-level lighting officer requires confirmation."
+    },
+    {
+      "id": "water",
+      "category": "Water Supply",
+      "name": "Jal Kal · Water Supply",
+      "officer": "Executive Engineer, relevant Jal Kal zone",
+      "escalation": "General Manager, Jal Kal",
+      "scope": "Local municipal water supply. Major projects or non-municipal assets require ownership review.",
+      "source": "https://jklmc.gov.in/Contact.aspx",
+      "note": "Official directory was search-indexed, but direct retrieval failed. Confirm current zone contact; no personal number is hardcoded."
+    },
+    {
+      "id": "sewer",
+      "category": "Sewerage",
+      "name": "Jal Kal · Sewerage",
+      "officer": "Jal Kal zonal engineering desk / designated operator",
+      "escalation": "Executive Engineer / General Manager, Jal Kal",
+      "scope": "Sewer lines and manholes. Open roadside drains may belong to LMC sanitation/engineering and require triage.",
+      "source": "https://lmc.up.nic.in/pdf/citysanitaionplan.pdf",
+      "note": "Historical sanitation plan supports agency distinction; current operator and ownership need confirmation."
+    },
+    {
+      "id": "review",
+      "category": "Other",
+      "name": "Manual jurisdiction review",
+      "officer": "JanSamadhan grievance administrator",
+      "escalation": "Confirm competent authority with LMC control room",
+      "scope": "Uncertain, mixed, outside-pilot or non-municipal issues. Do not automatically assign an unrelated department.",
+      "source": "https://lmc.up.nic.in/helpline.aspx",
+      "note": "Internal jurisdiction review queue; not a government department."
+    }
   ],
-  "localities":[{"name":"Hazratganj","lat":26.8467,"lng":80.9462},{"name":"Gomti Nagar","lat":26.8580,"lng":81.0040},{"name":"Aliganj","lat":26.8980,"lng":80.9450},{"name":"Alambagh","lat":26.8120,"lng":80.9020},{"name":"Indira Nagar","lat":26.8830,"lng":80.9950},{"name":"Chowk","lat":26.8600,"lng":80.9130}],
-  "locationNote":"Approximate locality reference points, not official ward boundaries. Final ward/zone assignment is manual. Reporting restricted to a demo Lucknow bounding box, not a legally authoritative municipal polygon."
+  "localities": [
+    {
+      "name": "Hazratganj",
+      "lat": 26.8467,
+      "lng": 80.9462
+    },
+    {
+      "name": "Gomti Nagar",
+      "lat": 26.858,
+      "lng": 81.004
+    },
+    {
+      "name": "Aliganj",
+      "lat": 26.898,
+      "lng": 80.945
+    },
+    {
+      "name": "Alambagh",
+      "lat": 26.812,
+      "lng": 80.902
+    },
+    {
+      "name": "Indira Nagar",
+      "lat": 26.883,
+      "lng": 80.995
+    },
+    {
+      "name": "Chowk",
+      "lat": 26.86,
+      "lng": 80.913
+    }
+  ],
+  "locationNote": "Approximate locality reference points, not official ward boundaries. Final ward/zone assignment is manual. Reporting restricted to a Lucknow service bounding box, not a legally authoritative municipal polygon."
 }

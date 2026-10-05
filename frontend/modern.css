@@ -23,3 +23,5 @@ input,select,textarea{font-size:15px;border-radius:10px;padding:13px 14px;min-he
 @media(max-width:1050px){main{padding:28px}.modern-report{grid-template-columns:minmax(0,1fr) minmax(285px,.85fr);gap:18px}.modern-report .panel{padding:22px}}
 @media(max-width:850px){main{padding:24px 18px}.modern-report{grid-template-columns:1fr}.modern-report .preview{position:static}.panel{padding:22px}.modern-report .two-col{grid-template-columns:1fr;gap:0}.page-heading{margin-bottom:24px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+.account-row{display:flex;align-items:end;gap:1rem;flex-wrap:wrap;margin-top:1rem}.account-row>div{flex:1;min-width:180px}.account-row label{min-width:150px}.action-form .secondary{margin-top:.65rem}

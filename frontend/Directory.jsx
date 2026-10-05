@@ -16,7 +16,7 @@ export default function DepartmentDirectory({directory}){
     <details className="department-contacts"><summary>View contacts — {d.category}</summary>
      <div className="department-contact-body">
       <p><strong>{referral?'Referral contact: LMC control room':'General contact: LMC control room'}</strong></p>
-      <p>{referral?'A working direct Jal Kal contact page could not be verified. Ask the LMC control room to confirm the relevant Jal Kal zone and current operator; the numbers below are LMC contacts, not direct Jal Kal officer numbers.':d.id==='review'?'This review queue belongs to the student prototype. For an external referral, ask the LMC control room which authority handles the issue.':`Ask the control room for the ${d.officer} responsible for your locality.`}</p>
+      <p>{referral?'A working direct Jal Kal contact page could not be verified. Ask the LMC control room to confirm the relevant Jal Kal zone and current operator; the numbers below are LMC contacts, not direct Jal Kal officer numbers.':d.id==='review'?'This queue is managed by JanSamadhan administrators. For an external referral, ask the LMC control room which authority handles the issue.':`Ask the control room for the ${d.officer} responsible for your locality.`}</p>
       <p>Phone: <a href={`tel:${contact.phone}`}>{contact.phone}</a></p>
       <p>Calling / WhatsApp numbers: {contact.alternate.split(' / ').map((number,i)=><React.Fragment key={number}>{i>0?' · ':''}<a href={`tel:+91${number}`}>{number}</a></React.Fragment>)}</p>
       <p>Email: <a href={`mailto:${contact.email}`}>{contact.email}</a></p>

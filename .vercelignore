@@ -1,6 +1,8 @@
 # Vercel only builds and serves the React/Vite frontend. The API and models run
 # on Render and are reached through the rewrite in vercel.json.
 .git/
+.env
+.env.*
 .venv/
 node_modules/
 backend/
