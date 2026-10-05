@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://jansamadhan-api.onrender.com/api/:path*"
+      "destination": "https://jansamadhan-service.onrender.com/api/:path*"
     },
     {
       "source": "/(.*)",
