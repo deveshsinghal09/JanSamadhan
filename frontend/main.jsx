@@ -43,7 +43,7 @@ function App(){
  const navigate=p=>{setPage(p);setMobile(false);setError('');setNotice('');window.scrollTo(0,0)};
  const enterDesk=p=>{setIntro(false);navigate(p);requestAnimationFrame(()=>{window.scrollTo(0,0);document.querySelector('main h1, .login-form h2, .loading')?.focus({preventScroll:true})});};
  if(intro)return <div className="cinematic-entry"><React.Suspense fallback={<div className="rumi-loading" role="status">Opening Lucknow…</div>}><RumiHero citizen={!user||user.role==='citizen'} onReport={()=>enterDesk(user&&user.role!=='citizen'?'complaints':'report')} onTrack={()=>enterDesk('complaints')}/></React.Suspense></div>;
- if(loading)return <div className="loading" role="status"><div><h2>Connecting to your civic desk…</h2><p>The hosted server may need a minute to wake up. This page will continue automatically.</p></div></div>;
+ if(loading)return <div className="loading" role="status"><div><h2>Connecting to your civic desk…</h2><p>The hosted server may need up to two minutes to wake up after inactivity. We are retrying automatically.</p></div></div>;
  if(!directory)return <div className="loading"><div role="alert"><h2>We could not connect yet.</h2><p>{error}</p><button className="primary" onClick={connect}>Try connecting again</button></div></div>;
  if(!user)return <Login onLogin={next=>{setUser(next);if(next.role!=='citizen')setPage('overview')}}/>;
  const dep=directory.departments.find(d=>d.id===user.department);

@@ -5,7 +5,10 @@ export async function api(path, options = {}, dependencies = {}) {
  const request = dependencies.fetch || fetch;
  const delay = dependencies.wait || wait;
  const method = (options.method || 'GET').toUpperCase();
- const attempts = method === 'GET' && !options.signal ? 4 : 1;
+ // Sleeping free instances can return immediate 502s for over a minute.
+ const startupRead = path === '/directory' || path === '/auth/me';
+ const attempts = method === 'GET' && !options.signal ? (startupRead ? 8 : 4) : 1;
+ const retryDelay = attempt => Math.min(15000, 2000 * 2 ** attempt);
  for (let attempt = 0; attempt < attempts; attempt++) {
   let response;
   try {
@@ -15,12 +18,12 @@ export async function api(path, options = {}, dependencies = {}) {
     headers: options.body instanceof FormData ? options.headers : {'Content-Type': 'application/json', ...options.headers},
    });
   } catch (cause) {
-   if (attempt + 1 < attempts) { await delay(2000 * 2 ** attempt); continue; }
+   if (attempt + 1 < attempts) { await delay(retryDelay(attempt)); continue; }
    throw new Error('The server is taking longer to respond. Please try again shortly.', {cause});
   }
   if ([502, 503, 504].includes(response.status) && attempt + 1 < attempts) {
    await response.body?.cancel();
-   await delay(2000 * 2 ** attempt);
+   await delay(retryDelay(attempt));
    continue;
   }
   let data;
