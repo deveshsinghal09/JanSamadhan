@@ -18,6 +18,6 @@ for ($i=0; $i -lt 30; $i++) {
  Start-Sleep -Seconds 1
 }
 if (!$ready) { throw 'Services did not start. Read data\ai-error.log and data\api-error.log. Close memory-heavy applications and retry.' }
-Write-Host 'Ready: http://127.0.0.1:3001 | Demo password: Review@123'
+Write-Host 'Ready: http://127.0.0.1:3001 | Sign in with your registered account'
 if (!$NoBrowser) { Start-Process 'http://127.0.0.1:3001' }
 

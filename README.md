@@ -4,7 +4,7 @@
 
 ![JanSamadhan Lucknow interface](frontend/assets/lucknow-hero.jpg)
 
-JanSamadhan is a full-stack academic prototype that helps a citizen describe a
+JanSamadhan is a full-stack application that helps a citizen describe a
 civic problem, attach a photograph, mark its location, and receive an
 explainable routing suggestion. It combines multilingual text classification,
 selective image classification, duplicate detection, explicit jurisdiction
@@ -15,11 +15,11 @@ but text and jurisdiction rules decide the municipal route. Low-confidence,
 conflicting, mixed-ownership, or unsupported cases are sent to a manual-review
 queue.
 
-> **Scope:** Lucknow academic pilot. This application does not submit reports
+> **Scope:** Independent Lucknow pilot. This application does not submit reports
 > to Lucknow Municipal Corporation, Jal Kal, PWD, NHAI, LDA, or another public
 > authority.
 
-## What the application demonstrates
+## Application features
 
 - Citizen registration, sign-in, report submission, image upload, location
   capture, status tracking, and complaint history
@@ -32,8 +32,19 @@ queue.
 - Location-, time-, category-, and TF-IDF-based duplicate suggestions
 - Lucknow-specific proposed department routing and jurisdiction safeguards
 - Neon PostgreSQL persistence for users, reports, histories, and images
-- Evidence pages showing real datasets, splits, metrics, confusion matrices,
-  limitations, and source attribution
+- Repository documentation with dataset splits, evaluation metrics, limitations
+  and source attribution
+
+## Project status as of 27 October 2026
+
+- Citizen reports, department-scoped officer actions, administrator review,
+  resolution disputes and persisted sessions are implemented.
+- Text and image benchmarks below are saved model evaluations, not a measured
+  end-to-end routing score or a verified Lucknow field trial.
+- Duplicate suggestions use accessible records. Citizen requests mainly compare
+  their own reports; this is not city-wide duplicate detection.
+- Private review reports, patent disclosure drafts and temporary authoring files
+  remain local and are excluded from Git.
 
 ## System architecture
 
@@ -114,9 +125,10 @@ Both inputs are used when a citizen provides both:
 2. The photo predicts a civic scene and a confidence score.
 3. The fusion policy checks whether the two signals agree and whether the
    image class is eligible to affect routing.
-4. Strong agreement can support the text result. A strong conflict, weak
-   image, infrastructure-only image, or unsupported scene triggers manual
-   review.
+4. Accepted agreement supports the text result. A strong mapped conflict,
+   including flooded-road evidence against road-damage text, triggers review.
+   An inconclusive photo retains the text proposal and its existing review flag;
+   it does not independently force manual review.
 5. Text and explicit ownership rules remain authoritative for department
    routing because an image cannot establish road ownership, exact location,
    or responsible authority.
@@ -154,12 +166,12 @@ Read the complete cards and caveats:
 | Public streetlight | LMC street-lighting engineering desk | Responsible lighting engineer through control room |
 | Municipal water supply | Jal Kal | Executive Engineer for the relevant zone |
 | Sewer line or manhole | Jal Kal sewerage desk | Zonal engineering desk / designated operator |
-| Mixed ownership or unsupported issue | Manual jurisdiction review | Demo grievance triage officer |
+| Mixed ownership or unsupported issue | Manual jurisdiction review | JanSamadhan administrator |
 
 Roads may instead belong to PWD, NHAI, LDA, a private society, or another
 authority. Open drains and sewers may also have different owners. The
 application therefore asks an officer to confirm zone and asset ownership.
-The verified general LMC control-room entry used by the prototype is shown in
+The verified general LMC control-room entry used by the application is shown in
 the application directory; no current named official is asserted.
 
 ## Run locally on Windows
@@ -180,15 +192,16 @@ cd "E:\OneDrive\Documents\ChatGPT\JANSAMADHAN"
 ```
 
 Copy `.env.example` to `.env` and put your own Neon connection string in
-`DATABASE_URL`. Then start the demo:
+`DATABASE_URL`. Then start the application:
 
 ```powershell
 .\START_DEMO.cmd
 ```
 
 Open [http://127.0.0.1:3001](http://127.0.0.1:3001). The launcher starts the
-FastAPI model service on port 8001, the Express API on port 3001, and the Vite
-development server used during frontend work.
+FastAPI model service on port 8001 and Express on port 3001. Express serves
+the existing production build. Use `npm run build` after frontend changes.
+`npm run dev` additionally starts Vite for frontend development.
 
 You can also run:
 
@@ -196,21 +209,22 @@ You can also run:
 npm run dev
 ```
 
-### Demo accounts
+### Account setup
 
-All demo accounts use password `Review@123`.
+Citizens register their own accounts. Shared demo accounts are disabled outside
+explicit test mode and are not a production sign-in method.
 
-| Role | Email |
-|---|---|
-| Citizen | `citizen@demo.in` |
-| Administrator | `admin@demo.in` |
-| Department officer | `sanitation@demo.in`, `roads@demo.in`, `lighting@demo.in`, `water@demo.in`, `sewerage@demo.in`, or `review@demo.in` |
-
-These accounts are created only when the selected data store has no users.
+For initial administrator provisioning, set `BOOTSTRAP_ADMIN_EMAIL` and
+`BOOTSTRAP_ADMIN_PASSWORD` privately in the server environment. Use a real email
+and a unique password of at least 12 characters. Start the server to create the
+account, then remove the bootstrap password from the environment. An
+administrator can grant registered users department-specific officer access.
+Never put credentials in the README or Git history.
 
 ## Tests
 
 ```powershell
+# Start the local AI service on port 8001 before running API integration tests.
 npm test
 & ".\.venv\Scripts\python.exe" -m unittest discover -s tests -p "test_*.py"
 npm run build
@@ -230,8 +244,8 @@ The repository contains:
   Render service URL is assigned
 - [`.env.example`](.env.example) — variable names without credentials
 
-The only required production secret is `DATABASE_URL`. Never commit the real
-value. See [the deployment guide](docs/DEPLOYMENT.md) for the complete release
+Configure `DATABASE_URL` privately and use the one-time administrator
+provisioning variables for initial setup. Never commit their values. See [the deployment guide](docs/DEPLOYMENT.md) for the complete release
 and verification procedure.
 
 ## Repository map
@@ -250,7 +264,7 @@ render.yaml           Render infrastructure definition
 
 ## Responsible-use limits
 
-- This is an academic routing assistant, not an official grievance channel.
+- This is an independent routing application, not an official grievance channel.
 - The training text is Bengaluru-derived; it does not prove Lucknow accuracy.
 - Some categories, especially sewerage, have little real test support.
 - Image predictions describe visible scenes and do not prove a fault,

@@ -52,3 +52,7 @@ yolov8n.pt
 report-work/
 JanSamadhan_Review_Package.zip
 TRAIN_IMAGES.cmd
+
+# Private reports, invention disclosures, and temporary authoring files
+/output/
+/tmp/
